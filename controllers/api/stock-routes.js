@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
 });
 
 // Put or update
-router.put('/:id', (req, res) => { });
+router.put("/:id", (req, res) => {});
 
 // delete
 
