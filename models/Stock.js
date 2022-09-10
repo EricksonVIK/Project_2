@@ -39,6 +39,13 @@ Stock.init(
         isNumeric: true,
       },
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: "user",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,

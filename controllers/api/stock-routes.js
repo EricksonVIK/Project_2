@@ -52,7 +52,8 @@ router.put('/:id', (req, res) => {
   Stock.update(
     {
       shares: req.body.shares,
-      cost: req.body.cost
+      cost: req.body.cost,
+      user_id: req.body.user_id
     },
     {
       where: {
