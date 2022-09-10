@@ -11,6 +11,27 @@ router.get("/", (req, res) => {
     });
 });
 
+// find by id api/stocks/#
+router.get("/:id", (req, res) => {
+  Stock.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "name", "ticker", "shares", "cost"],
+  })
+    .then((dbStockData) => {
+      if (!dbStockData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+      res.json(dbStockData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // post to stock list api/stocks
 router.post("/", (req, res) => {
   Stock.create({
@@ -27,8 +48,48 @@ router.post("/", (req, res) => {
 });
 
 // Put or update
-router.put("/:id", (req, res) => {});
+router.put('/:id', (req, res) => {
+  Stock.update(
+    {
+      shares: req.body.shares,
+      cost: req.body.cost
+    },
+    {
+      where: {
+        id: req.params.id
+      }
+    }
+  )
+    .then(dbStockData => {
+      if (!dbStockData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+      res.json(dbStockData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // delete
-
+router.delete("/:id", (req, res) => {
+  Stock.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbStockData) => {
+      if (!dbStockData) {
+        res.status(404).json({ message: "No comment found with this id!" });
+        return;
+      }
+      res.json(dbStockData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 module.exports = router;
