@@ -1,7 +1,7 @@
 {
   "name": "project_2",
   "version": "1.0.0",
-  "description": "Project 2 test 4 test 2 Erickson",
+  "description": "Stock Tracker",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,9 +19,16 @@
   },
   "homepage": "https://github.com/EricksonVIK/Project_2#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "eslint-config-prettier": "^8.5.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
   }
 }

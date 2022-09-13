@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS stock_buddy;
+
+CREATE DATABASE stock_buddy;
