@@ -4,7 +4,10 @@ const { Stock } = require("../../models");
 // get db stock list api/stocks
 router.get("/", (req, res) => {
   Stock.findAll()
-    .then((dbStockData) => res.json(dbStockData))
+    .then((dbStockData) => {
+      res.json(dbStockData)
+      res.render('home');
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);

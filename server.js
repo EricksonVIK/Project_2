@@ -4,6 +4,18 @@ const controllers = require('./controllers');
 
 const sequelize = require('./config/connection');
 
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({    
+  // Specify helpers which are only registered on this instance.
+  helpers: {
+      foo() { return 'FOO!'; },
+      bar() { return 'BAR!'; }
+  }
+});
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
 const path = require('path');
 
 const app = express();
