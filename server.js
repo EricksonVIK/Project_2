@@ -1,3 +1,4 @@
+
 const express = require('express');
 
 const controllers = require('./controllers');
@@ -13,14 +14,14 @@ const hbs = exphbs.create({
   }
 });
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
 
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
