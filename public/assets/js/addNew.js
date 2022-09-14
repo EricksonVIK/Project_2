@@ -7,9 +7,12 @@ document.getElementById("btnSave").addEventListener("click", async (event) => {
       share: document.getElementById("sharesPurchased").value,
       cost: document.getElementById("totalCost").value,
     };
-    const response = await fetch("/api/stock", {
+
+    console.log(newStock);
+
+    const response = await fetch("/api/stocks", {
       method: "POST",
-      body: JSON.stringify(newStock),
+      body: JSON.stringify({newStock}),
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
