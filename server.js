@@ -14,11 +14,22 @@ const hbs = exphbs.create({
   }
 });
 
+<<<<<<< HEAD
 
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
+=======
+const app = express();
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+const path = require('path');
+
+const PORT = process.env.PORT || 3001;
+>>>>>>> develop
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

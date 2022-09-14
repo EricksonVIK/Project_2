@@ -1,25 +1,25 @@
 const router = require('express').Router();
-
 // get all posts for homepage
 router.get('/', (req, res) => {
-
     res.render('homepage',
     );
 });
-
 router.get('/login', (req, res) => {
-
     res.render('login',
     );
 });
-
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard',
+    );
+});
 router.get('/signup', (req, res) => {
-
     res.render('signup',
     );
 });
-
-
+router.get('/addnew', (req, res) => {
+    res.render('addnew',
+    );
+});
 // get single postr
 router.get('/post/:id', (req, res) => {
     Post.findOne({
@@ -53,9 +53,7 @@ router.get('/post/:id', (req, res) => {
                 res.status(404).json({ message: 'No post found with this id' });
                 return;
             }
-
             const post = dbPostData.get({ plain: true });
-
             res.render('single-post', {
                 post,
                 loggedIn: req.session.loggedIn
@@ -66,13 +64,11 @@ router.get('/post/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }
-
     res.render('login');
 });
 
