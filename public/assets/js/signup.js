@@ -18,7 +18,9 @@ const signUp = async (event) => {
         const email = document.getElementById("user-email").value.trim()
         const password = document.getElementById("password").value.trim()
         const passwordConfirmed = document.getElementById("confirmPassword").value.trim()
-
+        
+        console.log(firstName, lastName);
+        
         if (
             !firstName || !lastName || !email || !password || !passwordConfirmed
         ) {
