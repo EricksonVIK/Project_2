@@ -19,8 +19,9 @@ const login = async (event) => {
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
         return;
-      }
-      document.location.replace("/dashboard");
+      } if (response.ok) {
+        document.location.replace("/dashboard")
+    } 
     } catch (err) {
       console.error(err);
     }
