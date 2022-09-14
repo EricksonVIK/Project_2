@@ -16,6 +16,10 @@ router.get('/signup', (req, res) => {
     res.render('signup',
     );
 });
+router.get('/addnew', (req, res) => {
+    res.render('addnew',
+    );
+});
 // get single postr
 router.get('/post/:id', (req, res) => {
     Post.findOne({
