@@ -1,0 +1,39 @@
+
+header {
+    margin-top: 28vh;
+}
+
+body {
+    text-align: center;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+
+}
+
+#signup-form {
+    font-size: larger;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 25px;
+}
+
+#email-pass {
+    text-align: left !important;
+    display: flex;
+    flex-direction: column;
+    width: 34vw;
+}
+
+#sign-log {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.button {
+    width: 25%;
+}
