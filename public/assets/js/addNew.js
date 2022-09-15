@@ -25,5 +25,5 @@ document.getElementById("btnSave").addEventListener("click", async (event) => {
   });
   
   document.getElementById("btnCnl").addEventListener("click", async (event) => {
-    document.location.replace("/");
+    document.location.replace("/dashboard");
   });
