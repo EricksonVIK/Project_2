@@ -114,3 +114,13 @@ label {
     color: white;
     font-size: larger;
 }
+
+/* ADDNEW.handlebars */
+
+#header-addnew{
+    justify-content: center;
+    font-size: 30px;
+}
+.addnew-title {
+    text-align: center;
+}
