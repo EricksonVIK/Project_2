@@ -20,7 +20,7 @@ router.get('/addnew', (req, res) => {
     res.render('addnew',
     );
 });
-// get single postr
+// get single post
 router.get('/post/:id', (req, res) => {
     Post.findOne({
         where: {
