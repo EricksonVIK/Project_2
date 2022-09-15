@@ -9,7 +9,7 @@ const login = async (event) => {
         alert("Please fill all the inputs.");
         return;
       }
-      const reponse = await fetch("/api/users/login", {
+      const reponse = await fetch("/api/user/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
