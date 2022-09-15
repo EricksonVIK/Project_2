@@ -20,6 +20,10 @@ router.get('/addnew', (req, res) => {
     res.render('addnew',
     );
 });
+
+router.get('/', (req, res) => {
+    console.log(req.session);
+})
 // get single post
 router.get('/post/:id', (req, res) => {
     Post.findOne({
