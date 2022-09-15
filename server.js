@@ -5,6 +5,20 @@ const controllers = require('./controllers');
 
 const sequelize = require('./config/connection');
 
+const session = require('express-session');
+
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const sess = {
+  secret: 'Secret secrets',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({    
   // Specify helpers which are only registered on this instance.
@@ -16,15 +30,19 @@ const hbs = exphbs.create({
 
 const app = express();
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', hbs.engine);
+// app.set('view engine', 'handlebars');
 
 const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 
+// handlebar
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+// session
+app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
