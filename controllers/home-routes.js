@@ -1,6 +1,7 @@
 const router = require('express').Router();
 // get all posts for homepage
 router.get('/', (req, res) => {
+    console.log(req.session)
     res.render('homepage',
     );
 });
@@ -20,10 +21,23 @@ router.get('/addnew', (req, res) => {
     res.render('addnew',
     );
 });
+router.get('/login', (req, res) => {
+    res.render('login',
+    );
+});
 
-router.get('/', (req, res) => {
-    console.log(req.session);
-})
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('dashboard');
+});
+
+
+// router.get('/', (req, res) => {
+//     console.log(req.session);
+// })
 // get single post
 // router.get('/post/:id', (req, res) => {
 //     Post.findOne({
@@ -68,12 +82,12 @@ router.get('/', (req, res) => {
 //             res.status(500).json(err);
 //         });
 // });
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-    res.render('dashboard');
-});
+// router.get('/login', (req, res) => {
+//     if (req.session.loggedIn) {
+//         res.redirect('/');
+//         return;
+//     }
+//     res.render('dashboard');
+// });
 
 module.exports = router;

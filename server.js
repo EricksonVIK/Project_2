@@ -54,6 +54,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // turn on connection to db and server
 // sync means that this is a sequalize taking the models and connecting them to associated database tables.
 // force: true is the same as MySQL DROP TABLE IF EXISTS ... Used when a model has been changed
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log(`Now Listening on ${PORT}`));
 });

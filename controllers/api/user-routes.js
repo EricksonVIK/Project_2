@@ -53,6 +53,7 @@ router.post("/", (req, res) => {
     //   res.status(500).json(err);
     // });
     .then(dbUserData => {
+      console.log(dbUserData)
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.firstName = dbUserData.firstName;

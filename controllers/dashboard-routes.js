@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const authority = require('../utils/auth')
 const { User, Stock } = require('../models')
 
-router.get('/dashboard', authority, (req, res) => {
+router.get('/', authority, (req, res) => {
     console.log(req.session);
     Stock.findAll({
         where: {
@@ -25,5 +25,41 @@ router.get('/dashboard', authority, (req, res) => {
             res.status(500).json(err);
         });
 });
+router.get('/', (req, res) => {
+    console.log(req.session)
+    res.render('homepage',
+    );
+});
+router.get('/login', (req, res) => {
+    res.render('login',
+    );
+});
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard',
+    );
+});
+router.get('/signup', (req, res) => {
+    res.render('signup',
+    );
+});
+router.get('/addnew', (req, res) => {
+    res.render('addnew',
+    );
+});
+router.get('/login', (req, res) => {
+    res.render('login',
+    );
+});
+
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('dashboard');
+});
+
+
+
 
 module.exports = router;
