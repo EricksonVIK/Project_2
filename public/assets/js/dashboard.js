@@ -1,3 +1,10 @@
+// let current = new Date();
+// let cTime = current.toLocaleString();
+// console.log(cTime);
+//
+// let time = document.getElementById("time")
+// time.append('append() current.toLocaleString()');
+
 document.getElementById("stockTable").addEventListener("click", async (event) => {
     event.preventDefault();
     document.body.classList.add("waiting");
@@ -20,4 +27,6 @@ document.getElementById("stockTable").addEventListener("click", async (event) =>
       document.location.replace(`/logs/${log_id}`);
     }
   });
+
+
   

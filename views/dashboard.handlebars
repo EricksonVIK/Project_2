@@ -1,24 +1,22 @@
 <div>
-  <h1 id="dash-header">Stock Portfolio of:</h1>
-  <h1><b>{{usrData.0.first_name}} {{usrData.0.last_name}}</h1>
-  <button id="logout">Log Out</button>
+  <h1 id="dash-header"><i>Stock Portfolio of:</i></h1>
+  <h1><b>{{usrData.0.first_name}} {{usrData.0.last_name}}</b></h1>
 </div>
   
 <div>
-  <a href="/addNew">
-    Add New Stock
-  </a>
+  <a class="addBtn" href="/addNew"><i>Add New Stock +</i></a>
 </div>
 
+<div id="data-table-wrapper">
   <div id="data-table">
-    <div>Date</div>
-    <div>Symbol</div>
-    <div>Current Price</div>
-    <div> Total Cost</div>
-    <div>Total Shares</div>
-    <div>Gain/Loss</div>
- </div>
-
+    <div id="time" class="data">Current Time</div>
+    <div class="data">Symbol</div>
+    <div class="data">Current Price</div>
+    <div class="data">Total Cost</div>
+    <div class="data">Total Shares</div>
+    <div class="data">Gain/Loss</div>
+  </div>
+</div>
 
 
 
