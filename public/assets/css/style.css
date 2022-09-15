@@ -7,21 +7,27 @@ nav {
     flex-direction: row;
     justify-content: space-between;
 }
-#logout {
+/* #logout {
     height: 40px;
     margin: 20px;
-}
+} */
 
 .logOut {
+    font-size: 30px;
     text-decoration: none;
     color: black;
+    margin: 20px;
+    background-color: white ;
+    padding: 5px;
 }
 
 .home {
     font-size: 30px;
     text-decoration: none;
-    color: white;
+    color: black;
     margin: 20px;
+    background-color: white ;
+    padding: 5px;
 }
 
 /* HOMEPAGE.handlebars */
@@ -29,6 +35,7 @@ nav {
 header {
     /* margin-top: 28vh; */
     font-size: 3vw;
+    color: white;
 }
 
 #dash-header {
@@ -38,15 +45,23 @@ header {
 
 body {
     text-align: center;
-    /* background-image: url('/public/assets/images/background-image.jpg');
-    background-size: cover; */
+    background-image: url('../images/background-image.jpg');
+    background-size: cover;
     /* background-image: linear-gradient(36deg, #036300, #160f75); */
     height: 100vh;
 }
 
 .home-content {
-    background-color: rgba(0%, 0%, 0%, 0.4);
+    background-color: rgba(0%, 0%, 0%, 0.6);
+    width: 100%;
+    height: 60%;
+    color: white;
+    padding-bottom: 15px;
+    border-radius: 25px;
+    position:relative;
+    margin-top:150px;
 }
+
 
 #main {
     display: flex;
@@ -60,13 +75,14 @@ label {
     margin-top: 10px;
 }
 
-#signup-form {
-    font-size: larger;
-    padding: 20px;
-    border: 1px solid #000000;
-    border-radius: 25px;
-    background-color: aliceblue;
-    height: 20vh;
+
+#signup {
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+    align-items:center;
+    justify-content: space-between;
 }
 
 #email-pass {
@@ -78,21 +94,55 @@ label {
 
 #sign-log {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     margin-top: 50px;
+    color:black;
 }
 
-/* .button {
-    width: 25%;
-    height: 40px;
-    border-radius: 10px;
-} */
+.signupTitle{
+    padding-bottom:10px;
+    font-size:36px;
+}
 
-.loginB, .signupB {
-    text-decoration: none;
-    color: white;
+.signup-content{
+    display: block;
     font-size: larger;
+    padding: 20px;
+    background-color: rgba(0%, 0%, 0%, 0.6);
+    /* width: 100%;
+    height: 50%; */
+    border-radius: 25px;
+    height: 60%;
+    color:white;
+
+}
+
+#signup-form{
+    justify-content: center;
+}
+.signupBtn{
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+    align-items:center;
+    margin-top:20px;
+}
+
+.existingAcct {
+    color:white;
+    margin-top: 15px;
+}
+.loginB, .signupB, .fpass {
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+}
+#fpass {
+    margin-top: 10px;
+}
+#loginB {
+    margin-bottom:20px;
 }
 
 /* ADDNEW.handlebars */
@@ -116,6 +166,21 @@ label {
     text-align: left;
 }
 
+.db-content {
+    background-color: rgba(0%, 0%, 0%, 0.6);
+    color: white;
+    padding-bottom: 15px;
+}
+
+
+.addnewstock{
+    background-color: rgba(0%, 0%, 0%, 0.6);
+    color: white;
+    padding-bottom: 15px;
+    border-radius: 25px;
+}
+
+
 #data-table {
     display: flex;
     flex-direction: column;
@@ -130,16 +195,20 @@ label {
 
 .addBtn {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: larger;
+    background-color: rgb(240, 134, 96);
+    padding:5px; 
+    /* border-radius: 15%; */
+    border: white, 3px;
 }
-
 /* ADDNEW.handlebars */
 
-#header-addnew{
+#header-addnew {
     justify-content: center;
     font-size: 30px;
 }
+
 .addnew-title {
     text-align: center;
 }
