@@ -74,7 +74,7 @@ router.put('/:id', (req, res) => {
   )
     .then(dbStockData => {
       if (!dbStockData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'No stock found with this id' });
         return;
       }
       res.json(dbStockData);
@@ -94,7 +94,7 @@ router.delete("/:id", (req, res) => {
   })
     .then((dbStockData) => {
       if (!dbStockData) {
-        res.status(404).json({ message: "No comment found with this id!" });
+        res.status(404).json({ message: "No stock found with this id!" });
         return;
       }
       res.json(dbStockData);
