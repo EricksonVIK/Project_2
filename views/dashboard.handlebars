@@ -15,8 +15,26 @@
     <a class="addBtn" href="/addNew">Add New Stock</a>
   </div>
 
-  <div id="data-table-wrapper">
-    <div id="data-table">
+  <table style="width:100%">
+    <tr>
+      <th>Company</th>
+      <th>Ticker</th>
+      <th>Shares</th>
+      <th>Total Cost</th>
+    </tr>
+    <tr>
+      <td>{{name}}</td>
+      <td>{{ticker}}</td>
+      <td>{{shares}}</td>
+      <td>{{cost}}</td>
+    </tr>
+  </table>  {{!-- if each for list? td --}}
+
+{{!-- add html table element to display the stocks w for each data to list stocks in row --}}
+{{!-- add event listener to stock ticker w hover to click and edit -- the gift app had the pop out for edit --}}
+{{!-- original below --}}
+  {{!-- <div id="data-table-wrapper"> --}}
+    {{!-- <div id="data-table">
       <div id="company" class="data">Company
         <span class="data-input"></span></div>
       {{! <div id="time" class="data">Current Time <span class="data-input"></span></div> }}
@@ -28,8 +46,8 @@
       <div id="tShares" class="data">Total Shares
         <span class="data-input"></span></div>
       {{! <div id="cPrice" class="data">Gain/Loss <span class="data-input"></span></div> }}
-    </div>
-  </div>
+    </div> --}}
+  {{!-- </div> --}}
 </div>
 
 <script src="/assets/js/addNew.js"></script>

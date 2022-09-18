@@ -1,7 +1,7 @@
 
 const express = require('express');
 
-const controllers = require('./controllers');
+const routes = require('./controllers');
 
 const sequelize = require('./config/connection');
 
@@ -22,17 +22,13 @@ const sess = {
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({    
   // Specify helpers which are only registered on this instance.
-  helpers: {
-      foo() { return 'FOO!'; },
-      bar() { return 'BAR!'; }
-  }
+  // helpers: {
+  //     foo() { return 'FOO!'; },
+  //     bar() { return 'BAR!'; }
+  // }
 });
 
 const app = express();
-
-// app.engine('handlebars', hbs.engine);
-// app.set('view engine', 'handlebars');
-
 const path = require('path');
 
 const PORT = process.env.PORT || 3001;
@@ -47,7 +43,7 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(controllers);
+app.use(routes);
 
 // express.static -- middleware takes all content in folder and serve as static assets
 app.use(express.static(path.join(__dirname, "public")));

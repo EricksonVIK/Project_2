@@ -21,6 +21,7 @@ const login = async (event) => {
       return;
     }
     if (response.ok) {
+      console.log(req.session)
       document.location.replace("/dashboard");
     }
   } catch (err) {
