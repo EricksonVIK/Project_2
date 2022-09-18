@@ -8,7 +8,7 @@
  <div class="db-content"> 
   <div>
     <h1 id="dash-header"><i>Stock Portfolio of:</i></h1>
-    <h1><b>{{usrData.0.first_name}} {{usrData.0.last_name}}</b></h1>
+    <h1><b></b></h1>
   </div>
 
   <div>
@@ -22,12 +22,14 @@
       <th>Shares</th>
       <th>Total Cost</th>
     </tr>
+    {{#each stocks}}
     <tr>
       <td>{{name}}</td>
       <td>{{ticker}}</td>
       <td>{{shares}}</td>
       <td>{{cost}}</td>
     </tr>
+    {{/each}}
   </table>  {{!-- if each for list? td --}}
 
 {{!-- add html table element to display the stocks w for each data to list stocks in row --}}
@@ -50,7 +52,7 @@
   {{!-- </div> --}}
 </div>
 
-<script src="/assets/js/addNew.js"></script>
+<script src="/public/assets/js/addNew.js"></script>
 <script src="/assets/js/dashboard.js"></script>
 <script src="/assets/js/logout.js"></script>
 

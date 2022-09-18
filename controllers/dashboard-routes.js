@@ -1,37 +1,36 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 // const authority = require('../utils/auth')
-// const { User, Stock } = require('../models')
+const { User, Stock } = require('../models')
 
-// router.get('/', authority, (req, res) => {
-    // console.log(req.session);
 router.get('/', (req, res) => {
-    res.render('dashboard', {
-        name: 'Apple',
-        ticker: 'APPL',
-        shares: 1,
-        cost: 100
-    });
-    console.log(res)
-});       // where: {
-        //     user_id: req.session.user_id
-        // },
-        // attribures: [
-        //     'name',
-        //     'ticker',
-        //     'shares',
-        //     'cost'
-        // ],
-    // })
-        // .then(dbStockData => {
-        //     const stocks = dbStockData.map(stock => stock.get({ plain: true }));
-        //     res.render('dashboard', { stocks, loggedIn: true });
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        //     res.status(500).json(err);
-        // });
-// });
+    Stock.findAll({
+        attributes: [
+            'id',
+            'name',
+            'ticker',
+            'shares',
+            'cost',
+            'user_id'
+        ],
+        include: [
+            {
+                    model: User,
+                    attributes: ['id', 'firstName', 'lastName', 'email'],
+            }
+        ]
+    })
+        .then(dbStockData => {
+            console.log(dbStockData)
+            // loop over and map sequelize object
+            const stocks = dbStockData.map(post => post.get({ plain: true }));
+            res.render('dashboard', {stocks});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+});
 // router.get('/', (req, res) => {
 //     console.log(req.session)
 //     res.render('homepage',
