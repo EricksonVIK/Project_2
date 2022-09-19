@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
   Stock.findAll()
     .then((dbStockData) => {
       res.json(dbStockData)
-      res.render('dashboard');
+      // res.render('dashboard');
     })
     .catch((err) => {
       console.log(err);

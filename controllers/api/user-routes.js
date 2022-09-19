@@ -12,8 +12,11 @@ router.get("/", (req, res) => {
       },
     ],
   })
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => {
+  .then((dbUserData) => {
+    res.json(dbUserData)
+    res.render('dashboard');
+  })
+  .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -38,8 +41,11 @@ router.get("/:id", (req, res) => {
         res.status(404).json({ message: "No user found with this id" });
         return;
       }
-      res.json(dbUserData);
-    })
+      ((dbStockData) => {
+        res.json(dbStockData)
+        res.render('dashboard');
+      })
+      })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);

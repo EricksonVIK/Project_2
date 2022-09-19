@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-// const authority = require('../utils/auth')
+const authority = require('../utils/auth')
 const { User, Stock } = require('../models')
 
-router.get('/', (req, res) => {
+router.get('/', authority, (req, res) => {
     // console.log(req.session)
     if (req.session) {
         Stock.findAll({
@@ -28,24 +28,36 @@ router.get('/', (req, res) => {
                 // console.log(req.session)
                 // loop over and map sequelize object
                 const stocks = dbStockData.map(stock => stock.get({ plain: true }));
+                // const stocks = dbStockData.filter(stocks => stocks[1]).map(stock => stock.get({ plain: true }));
+                console.log('-----------STOCKS----------------')
+                console.log(stocks)
 
-                // console.log(stocks)
-                res.render('dashboard', { stocks });
+                const userStocks = stocks.filter(stocks => stocks.user.id === req.session.user_id);
+                console.log('------------USERSTOCKS-------------')
+                console.log(userStocks)
+                // console.log(stocks[0])
+                // console.log(stocks[0].id)
+                // console.log(stocks[0].user_id)
+                // console.log(stocks[0].user.id)
+                // console.log(req.session)
+                // console.log(req.session.id)
+                // console.log(req.session.user_id)
+                res.render('dashboard', { userStocks, loggedIn: req.session.loggedIn });
             })
             .catch(err => {
                 console.log(err);
                 res.status(500).json(err);
             })
-    }
+    };
 });
 
 router.get('/:id', (req, res) => {
-    // if (req.session) {
+    if (req.session) {
 
         User.findOne({
             attributes: { exclude: ["password"] },
             where: {
-                id: req.params.id,
+                id: req.params.id
             },
             include: [
                 {
@@ -58,7 +70,8 @@ router.get('/:id', (req, res) => {
                 console.log(dbUserData)
                 console.log(req.session)
                 // loop over and map sequelize object
-                const userStocks = dbUserData.map(user => user.get({ plain: true }));
+                // const userStocks = dbUserData.map(user => user.get({ plain: true }));
+                const userStocks =dbUserData.get({ plain: true });
 
                 console.log('userStocks is below', userStocks)
                 res.render('dashboard', { userStocks });
@@ -67,7 +80,7 @@ router.get('/:id', (req, res) => {
                 console.log(err);
                 res.status(500).json(err);
             })
-    // }
+    };
 });
 
 

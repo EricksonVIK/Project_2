@@ -8,7 +8,7 @@
  <div class="db-content"> 
   <div>
     <h1 id="dash-header"><i>Stock Portfolio of:</i></h1>
-    <h1><b>{{user.firstName}}{{user.lastName}}</user></b></h1>
+    <h1><b>{{req.session.firstName}}{{req.session.lastName}}</user></b></h1>
   </div>
 
   <div>
@@ -22,7 +22,8 @@
       <th>Shares</th>
       <th>Total Cost</th>
     </tr>
-    {{#each stocks}}
+    {{#each userStocks}}
+    {{!-- {{if stocks[i].user.user_id === req.session.user_id}} --}}
     <tr>
       {{!-- try adding an <a></a> somewhere on the tab to edit the stock --}}
       <td>{{name}}</td>
@@ -30,6 +31,7 @@
       <td>{{shares}}</td>
       <td>{{cost}}</td>
     </tr>
+    {{!-- {{/if}} --}}
     {{/each}}
   </table>  {{!-- if each for list? td --}}
 </div>
