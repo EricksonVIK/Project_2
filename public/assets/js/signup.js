@@ -45,11 +45,9 @@ document.getElementById("signUpButton").addEventListener("click", async (event) 
         return;
     }
     else {
-
-
         const response = await fetch("/api/user", {
             method: "post",
-            body: JSON.stringify({
+          body: JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
@@ -57,7 +55,8 @@ document.getElementById("signUpButton").addEventListener("click", async (event) 
             }),
             headers: { "Content-Type": "application/json" },
         });
-        if (response.ok) {
+      if (response.ok) {
+          console.log('User has been added!')
             document.location.replace("/dashboard");
         } else {
             alert("Looks like something went wrong. Try again!");

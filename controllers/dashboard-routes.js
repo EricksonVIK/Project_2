@@ -4,6 +4,7 @@ const sequelize = require('../config/connection');
 const { User, Stock } = require('../models')
 
 router.get('/', (req, res) => {
+    // console.log(req.session)
     Stock.findAll({
         attributes: [
             'id',
@@ -12,6 +13,7 @@ router.get('/', (req, res) => {
             'shares',
             'cost',
             'user_id'
+            // [sequelize.literal('(SELECT USER(*) FROM user WHERE user.id = stock.user_id', 'user')]
         ],
         include: [
             {
@@ -31,6 +33,10 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         })
 });
+
+// router.get('/', (req, res) => {
+//     console.log(req.session)
+// })
 // router.get('/', (req, res) => {
 //     console.log(req.session)
 //     res.render('homepage',
@@ -57,14 +63,26 @@ router.get('/addnew', (req, res) => {
 //     );
 // });
 
-router.get('/logout', (req, res) => {
+// router.get('/logout', (req, res) => {
+//     if (req.session.loggedIn) {
+//         req.session.destroy(() => {
+//             res.status(204).end();
+//         });
+       
+//     }
+//     else {
+//         res.status(404).end();
+//     }
+// });
+router.get('/login', (req, res) => {
+    console.log(req.session);
     if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
+      res.redirect('/');
+      return;
     }
-    res.render('dashboard');
-});
-
+    res.render('login');
+  });
+  
 
 
 
