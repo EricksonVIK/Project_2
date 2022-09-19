@@ -5,9 +5,18 @@ const { User, Stock } = require("../../models");
 router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
+    include: [
+      {
+        model: Stock,
+        attributes: ["id", "name", "ticker", "shares", "cost"]
+      },
+    ],
   })
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => {
+  .then((dbUserData) => {
+    res.json(dbUserData)
+    res.render('dashboard');
+  })
+  .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -32,14 +41,18 @@ router.get("/:id", (req, res) => {
         res.status(404).json({ message: "No user found with this id" });
         return;
       }
-      res.json(dbUserData);
-    })
+      ((dbStockData) => {
+        res.json(dbStockData)
+        res.render('dashboard');
+      })
+      })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
+// create stock while logged in to add
 router.post("/", (req, res) => {
   User.create({
     firstName: req.body.firstName,
@@ -47,11 +60,6 @@ router.post("/", (req, res) => {
     email: req.body.email,
     password: req.body.password,
   })
-    // .then((dbUserData) => res.json(dbUserData))
-    // .catch((err) => {
-    //   console.log(err);
-    //   res.status(500).json(err);
-    // });
     .then(dbUserData => {
       console.log(dbUserData)
       req.session.save(() => {
@@ -66,6 +74,27 @@ router.post("/", (req, res) => {
     });  
 });
 
+// delete
+router.delete("/:id", (req, res) => {
+  User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user found with this id" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// user log in route
 router.post('/login', (req, res) => {
   User.findOne({
     where: {
@@ -86,45 +115,30 @@ router.post('/login', (req, res) => {
 
     req.session.save(() => {
       // declare session variables
+      console.log('---------------- User Logged In ----------------')
+
+      console.log(dbUserData)
       req.session.user_id = dbUserData.id;
       req.session.firstName = dbUserData.firstName;
       req.session.lastName = dbUserData.lastName;
       req.session.email = dbUserData.email;
       req.session.loggedIn = true;
-
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
   });
 });
 
+// User log out route
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
+      console.log('-------------USER LOGGED OUT?---------------')
       res.status(204).end();
     });
   }
   else {
     res.status(404).end();
   }
-});
-// delete
-router.delete("/:id", (req, res) => {
-  User.destroy({
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(404).json({ message: "No user found with this id" });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
 });
 
 module.exports = router;

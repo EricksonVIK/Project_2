@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
   Stock.findAll()
     .then((dbStockData) => {
       res.json(dbStockData)
-      res.render('dashboard');
+      // res.render('dashboard');
     })
     .catch((err) => {
       console.log(err);
@@ -23,14 +23,6 @@ router.get("/:id", (req, res) => {
     attributes: ["id", "name", "ticker", "shares", "cost"],
   })
     .then((dbStockData) => {
-      /*
-      dbStockData holds current stock data
-      Use the data and call the yahoo api to get the shares and cost
-
-      var myStock = {...dbStockData, cost, share}
-      
-      
-      */
       if (!dbStockData) {
         res.status(404).json({ message: "No post found with this id" });
         return;
@@ -45,17 +37,20 @@ router.get("/:id", (req, res) => {
 
 // post to stock list api/stocks
 router.post("/", (req, res) => {
-  Stock.create({
-    name: req.body.name,
-    ticker: req.body.ticker,
-    shares: req.body.shares,
-    cost: req.body.cost,
-  })
-    .then((dbStockData) => res.json(dbStockData))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
+  if (req.session) {
+    Stock.create({
+      name: req.body.name,
+      ticker: req.body.ticker,
+      shares: req.body.shares,
+      cost: req.body.cost,
+      user_id:req.session.user_id
+    })
+      .then((dbStockData) => res.json(dbStockData))
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  }
 });
 
 // Put or update
@@ -104,4 +99,5 @@ router.delete("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 module.exports = router;

@@ -18,10 +18,6 @@ document.getElementById("signUpButton").addEventListener("click", async (event) 
     const email = document.querySelector('#signupEmail').value.trim();
     const password = document.querySelector("#password").value.trim();
     const passwordConfirmed = document.querySelector("#passwordConfirm").value.trim();
-    // console.log(firstName)
-    // console.log(lastName)
-    // console.log(email)
-    // console.log(password)
 
     if (!firstName || !lastName || !email || !password || !passwordConfirmed) {
       alert("Please fill all the fields!");
@@ -45,11 +41,9 @@ document.getElementById("signUpButton").addEventListener("click", async (event) 
         return;
     }
     else {
-
-
         const response = await fetch("/api/user", {
             method: "post",
-            body: JSON.stringify({
+          body: JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
@@ -57,7 +51,8 @@ document.getElementById("signUpButton").addEventListener("click", async (event) 
             }),
             headers: { "Content-Type": "application/json" },
         });
-        if (response.ok) {
+      if (response.ok) {
+          console.log('User has been added!')
             document.location.replace("/dashboard");
         } else {
             alert("Looks like something went wrong. Try again!");

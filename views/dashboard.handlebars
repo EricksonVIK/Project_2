@@ -1,39 +1,44 @@
-{{!-- <div class="db-content"> --}}
   <div>
     <nav>
-      <a href="/" class="home">Home</a>
-     <a class="logOut" href="/">Log Out</a>
+      <a href="/" id="home" class="home">Home</a>
+     <a id="logOut" class="logOut" href="/">Log Out</a>
     </nav>
   </div>
  <div class="db-content"> 
   <div>
     <h1 id="dash-header"><i>Stock Portfolio of:</i></h1>
-    <h1><b>{{usrData.0.first_name}} {{usrData.0.last_name}}</b></h1>
+    {{!-- <h1 id="dash-header"><i>Stock Portfolio of:</i></h1>
+    <h1><b>{{req.session.firstName}}{{req.session.lastName}}</user></b></h1> --}}
   </div>
 
   <div>
     <a class="addBtn" href="/addNew">Add New Stock</a>
   </div>
 
-  <div id="data-table-wrapper">
-    <div id="data-table">
-      <div id="company" class="data">Company
-        <span class="data-input"></span></div>
-      {{! <div id="time" class="data">Current Time <span class="data-input"></span></div> }}
-      <div id="symbol" class="data">Symbol
-        <span class="data-input"></span></div>
-      {{! <div id="cPrice" class="data">Current Price <span class="data-input"></span></div> }}
-      <div id="tCost" class="data">Total Cost
-        <span class="data-input"></span></div>
-      <div id="tShares" class="data">Total Shares
-        <span class="data-input"></span></div>
-      {{! <div id="cPrice" class="data">Gain/Loss <span class="data-input"></span></div> }}
-    </div>
+  <table style="width:100%">
+    <tr>
+      <th>Company</th>
+      <th>Ticker</th>
+      <th>Shares</th>
+      <th>Total Cost</th>
+    </tr>
+    {{!-- loop to add all user associated stocks --}}
+    {{#each userStocks}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{ticker}}</td>
+      <td>{{shares}}</td>
+      <td>{{cost}}</td>
+    </tr>
+    {{/each}}
+  </table>  
+  <div>
+    <canvas id = 'myChart'></canvas>
   </div>
 </div>
 
-<script src="/assets/js/addNew.js"></script>
 <script src="/assets/js/dashboard.js"></script>
 <script src="/assets/js/logout.js"></script>
+{{!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
 
-{{! <script src= "/public/assets/js/login.js"></script> }}
+

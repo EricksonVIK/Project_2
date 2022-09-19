@@ -1,32 +1,15 @@
-// let current = new Date();
-// let cTime = current.toLocaleString();
-// console.log(cTime);
-//
-// let time = document.getElementById("time")
-// time.append('append() current.toLocaleString()');
+// file for future API
 
-// document.querySelector("#data-table").addEventListener("click", async (event) => {
-//     event.preventDefault();
-//     document.body.classList.add("waiting");
-//     if (event.target.matches("td.delBtn *")) {
-//       const target = event.target.closest("td.delBtn");
-//       const log_id = target.getAttribute("data-id");
-//       const response = await fetch(`/api/logData/${log_id}`, {
-//         method: "DELETE",
-//       });
-  
-//       if (response.ok) {
-//         document.location.replace("/");
-//       } else {
-//         alert("Failed to delete log");
-//         return;
-//       }
-//     } else if (event.target.matches("td.editBtn *")) {
-//       const target = event.target.closest("td.editBtn");
-//       const log_id = target.getAttribute("data-id");
-//       document.location.replace(`/logs/${log_id}`);
-//     }
-//   });
+// const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': '34d605bdbfmshdb4d8ce3a3b8001p173564jsnd4d167075ad7',
+// 		'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
+// 	}
+// };
 
+// fetch(`https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${userStocks.ticker}&datatype=json`, options)
+// 	.then(response => response.json())
+// 	console.log('------TICKER---------')
+// 	.catch(err => console.error(err));
 
-  

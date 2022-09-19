@@ -170,6 +170,7 @@ label {
     background-color: rgba(0%, 0%, 0%, 0.6);
     color: white;
     padding-bottom: 15px;
+    height: 60%
 }
 
 
@@ -211,4 +212,14 @@ label {
 
 .addnew-title {
     text-align: center;
+}
+
+table {
+    width:100%;
+    padding: 5px;
+    margin-top: 10px;
+}
+th, td {
+  border-style:solid;
+  border-color: white;
 }
