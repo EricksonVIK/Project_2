@@ -5,34 +5,76 @@ const { User, Stock } = require('../models')
 
 router.get('/', (req, res) => {
     // console.log(req.session)
-    Stock.findAll({
-        attributes: [
-            'id',
-            'name',
-            'ticker',
-            'shares',
-            'cost',
-            'user_id'
-            // [sequelize.literal('(SELECT USER(*) FROM user WHERE user.id = stock.user_id', 'user')]
-        ],
-        include: [
-            {
+    if (req.session) {
+        Stock.findAll({
+            attributes: [
+                'id',
+                'name',
+                'ticker',
+                'shares',
+                'cost',
+                'user_id'
+            
+            ],
+            include: [
+                {
                     model: User,
                     attributes: ['id', 'firstName', 'lastName', 'email'],
-            }
-        ]
-    })
-        .then(dbStockData => {
-            console.log(dbStockData)
-            // loop over and map sequelize object
-            const stocks = dbStockData.map(post => post.get({ plain: true }));
-            res.render('dashboard', {stocks});
+                }
+            ]
         })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        })
+            .then(dbStockData => {
+                // console.log(dbStockData)
+                // console.log(req.session)
+                // loop over and map sequelize object
+                const stocks = dbStockData.map(stock => stock.get({ plain: true }));
+
+                // console.log(stocks)
+                res.render('dashboard', { stocks });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            })
+    }
 });
+
+router.get('/:id', (req, res) => {
+    // if (req.session) {
+
+        User.findOne({
+            attributes: { exclude: ["password"] },
+            where: {
+                id: req.params.id,
+            },
+            include: [
+                {
+                    model: Stock,
+                    attributes: ["id", "name", "ticker", "shares", "cost"]
+                },
+            ],
+        })
+            .then(dbUserData => {
+                console.log(dbUserData)
+                console.log(req.session)
+                // loop over and map sequelize object
+                const userStocks = dbUserData.map(user => user.get({ plain: true }));
+
+                console.log('userStocks is below', userStocks)
+                res.render('dashboard', { userStocks });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            })
+    // }
+});
+
+
+            
+
+
+
 
 // router.get('/', (req, res) => {
 //     console.log(req.session)

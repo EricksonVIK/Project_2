@@ -45,17 +45,20 @@ router.get("/:id", (req, res) => {
 
 // post to stock list api/stocks
 router.post("/", (req, res) => {
-  Stock.create({
-    name: req.body.name,
-    ticker: req.body.ticker,
-    shares: req.body.shares,
-    cost: req.body.cost,
-  })
-    .then((dbStockData) => res.json(dbStockData))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
+  if (req.session) {
+    Stock.create({
+      name: req.body.name,
+      ticker: req.body.ticker,
+      shares: req.body.shares,
+      cost: req.body.cost,
+      user_id:req.session.user_id
+    })
+      .then((dbStockData) => res.json(dbStockData))
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  }
 });
 
 // Put or update
