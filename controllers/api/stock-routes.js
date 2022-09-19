@@ -23,14 +23,6 @@ router.get("/:id", (req, res) => {
     attributes: ["id", "name", "ticker", "shares", "cost"],
   })
     .then((dbStockData) => {
-      /*
-      dbStockData holds current stock data
-      Use the data and call the yahoo api to get the shares and cost
-
-      var myStock = {...dbStockData, cost, share}
-      
-      
-      */
       if (!dbStockData) {
         res.status(404).json({ message: "No post found with this id" });
         return;
@@ -107,4 +99,5 @@ router.delete("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 module.exports = router;

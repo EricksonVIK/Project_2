@@ -1,19 +1,11 @@
 const router = require('express').Router();
 const {User, Stock,} = require ('../models')
-// get all posts for homepage
+
 router.get('/', (req, res) => {
     console.log(req.session)
     res.render('homepage',
     );
 });
-// router.get('/login', (req, res) => {
-//     res.render('login',
-//     );
-// });
-// router.get('/dashboard', (req, res) => {
-//     res.render('dashboard',
-//     );
-// });
 router.get('/signup', (req, res) => {
     res.render('signup',
     );

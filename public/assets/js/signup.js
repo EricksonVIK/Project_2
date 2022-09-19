@@ -18,10 +18,6 @@ document.getElementById("signUpButton").addEventListener("click", async (event) 
     const email = document.querySelector('#signupEmail').value.trim();
     const password = document.querySelector("#password").value.trim();
     const passwordConfirmed = document.querySelector("#passwordConfirm").value.trim();
-    // console.log(firstName)
-    // console.log(lastName)
-    // console.log(email)
-    // console.log(password)
 
     if (!firstName || !lastName || !email || !password || !passwordConfirmed) {
       alert("Please fill all the fields!");

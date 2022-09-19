@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const authority = require('../utils/auth')
 const { User, Stock } = require('../models')
 
+// get stocks associated with user
 router.get('/', authority, (req, res) => {
     // console.log(req.session)
     if (req.session) {
@@ -24,24 +25,13 @@ router.get('/', authority, (req, res) => {
             ]
         })
             .then(dbStockData => {
-                // console.log(dbStockData)
-                // console.log(req.session)
-                // loop over and map sequelize object
                 const stocks = dbStockData.map(stock => stock.get({ plain: true }));
-                // const stocks = dbStockData.filter(stocks => stocks[1]).map(stock => stock.get({ plain: true }));
                 console.log('-----------STOCKS----------------')
                 console.log(stocks)
-
+                // associate the stocks with logged in user
                 const userStocks = stocks.filter(stocks => stocks.user.id === req.session.user_id);
                 console.log('------------USERSTOCKS-------------')
                 console.log(userStocks)
-                // console.log(stocks[0])
-                // console.log(stocks[0].id)
-                // console.log(stocks[0].user_id)
-                // console.log(stocks[0].user.id)
-                // console.log(req.session)
-                // console.log(req.session.id)
-                // console.log(req.session.user_id)
                 res.render('dashboard', { userStocks, loggedIn: req.session.loggedIn });
             })
             .catch(err => {
@@ -51,84 +41,11 @@ router.get('/', authority, (req, res) => {
     };
 });
 
-router.get('/:id', (req, res) => {
-    if (req.session) {
-
-        User.findOne({
-            attributes: { exclude: ["password"] },
-            where: {
-                id: req.params.id
-            },
-            include: [
-                {
-                    model: Stock,
-                    attributes: ["id", "name", "ticker", "shares", "cost"]
-                },
-            ],
-        })
-            .then(dbUserData => {
-                console.log(dbUserData)
-                console.log(req.session)
-                // loop over and map sequelize object
-                // const userStocks = dbUserData.map(user => user.get({ plain: true }));
-                const userStocks =dbUserData.get({ plain: true });
-
-                console.log('userStocks is below', userStocks)
-                res.render('dashboard', { userStocks });
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            })
-    };
-});
-
-
-            
-
-
-
-
-// router.get('/', (req, res) => {
-//     console.log(req.session)
-// })
-// router.get('/', (req, res) => {
-//     console.log(req.session)
-//     res.render('homepage',
-//     );
-// });
-// router.get('/login', (req, res) => {
-//     res.render('login',
-//     );
-// });
-// router.get('/dashboard', (req, res) => {
-//     res.render('dashboard',
-//     );
-// });
-// router.get('/signup', (req, res) => {
-//     res.render('signup',
-//     );
-// });
 router.get('/addnew', (req, res) => {
     res.render('addnew',
     );
 });
-// router.get('/login', (req, res) => {
-//     res.render('login',
-//     );
-// });
 
-// router.get('/logout', (req, res) => {
-//     if (req.session.loggedIn) {
-//         req.session.destroy(() => {
-//             res.status(204).end();
-//         });
-       
-//     }
-//     else {
-//         res.status(404).end();
-//     }
-// });
 router.get('/login', (req, res) => {
     console.log(req.session);
     if (req.session.loggedIn) {

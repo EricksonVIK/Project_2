@@ -56,6 +56,4 @@ Stock.init(
   }
 );
 
-// how do we add the current price and total G/L?
-
 module.exports = Stock;

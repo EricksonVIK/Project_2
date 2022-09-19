@@ -2,9 +2,7 @@
 const Stock = require('./Stock');
 const User = require('./User');
 
-
-
-// area for future associations
+// model associations
 User.hasMany(Stock, {
     foreignKey: 'user_id'
 })

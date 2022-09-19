@@ -52,6 +52,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// create stock while logged in to add
 router.post("/", (req, res) => {
   User.create({
     firstName: req.body.firstName,
@@ -93,7 +94,7 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-
+// user log in route
 router.post('/login', (req, res) => {
   User.findOne({
     where: {
@@ -127,6 +128,7 @@ router.post('/login', (req, res) => {
   });
 });
 
+// User log out route
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {

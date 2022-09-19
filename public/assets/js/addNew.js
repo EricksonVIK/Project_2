@@ -14,7 +14,6 @@ document.getElementById("btnSave").addEventListener("click", async (event) => {
         ticker: ticker,
         shares: shares,
         cost: cost,
-        // do i need to add in the user_id? if so, how?
       }),
       headers: { "Content-Type": "application/json" },
     });
