@@ -108,13 +108,14 @@ router.post('/login', (req, res) => {
 
     req.session.save(() => {
       // declare session variables
+      console.log('---------------- User Logged In ----------------')
+
       console.log(dbUserData)
       req.session.user_id = dbUserData.id;
       // req.session.firstName = dbUserData.firstName;
       // req.session.lastName = dbUserData.lastName;
       req.session.email = dbUserData.email;
       req.session.loggedIn = true;
-      console.log('---------------- User Logged In ----------------')
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
   });
