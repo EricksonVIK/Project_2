@@ -46,6 +46,10 @@ Stock.init(
         key: "id",
       },
     },
+    current_price: {
+      type: DataTypes.STRING,
+  
+    }
   },
   {
     sequelize,

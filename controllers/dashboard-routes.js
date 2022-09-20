@@ -14,7 +14,8 @@ router.get('/', authority, (req, res) => {
                 'ticker',
                 'shares',
                 'cost',
-                'user_id'
+                'user_id',
+                'current_price'
             
             ],
             include: [
@@ -26,8 +27,8 @@ router.get('/', authority, (req, res) => {
         })
             .then(dbStockData => {
                 const stocks = dbStockData.map(stock => stock.get({ plain: true }));
-                console.log('-----------STOCKS----------------')
-                console.log(stocks)
+                // console.log('-----------STOCKS----------------')
+                // console.log(stocks)
                 // associate the stocks with logged in user
                 const userStocks = stocks.filter(stocks => stocks.user.id === req.session.user_id);
                 console.log('------------USERSTOCKS-------------')

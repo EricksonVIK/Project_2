@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const { Stock } = require("../../models");
+const fetch = require("node-fetch");
 
 // get db stock list api/stocks
 router.get("/", (req, res) => {
   Stock.findAll()
     .then((dbStockData) => {
-      res.json(dbStockData)
+      res.json(dbStockData);
       // res.render('dashboard');
     })
     .catch((err) => {
@@ -36,45 +37,64 @@ router.get("/:id", (req, res) => {
 });
 
 // post to stock list api/stocks
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   if (req.session) {
-    Stock.create({
-      name: req.body.name,
-      ticker: req.body.ticker,
-      shares: req.body.shares,
-      cost: req.body.cost,
-      user_id:req.session.user_id
-    })
-      .then((dbStockData) => res.json(dbStockData))
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json(err);
-      });
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "process.env.API",
+        "X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com",
+      },
+    };
+    try {
+      const response = await fetch(
+        `https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${req.body.ticker}&datatype=json`,
+        options
+      );
+      const fetchData = await response.json();
+      console.log(fetchData);
+      if (fetchData) {
+        const newStock = await Stock.create({
+          name: req.body.name,
+          ticker: req.body.ticker,
+          shares: req.body.shares,
+          cost: req.body.cost,
+          user_id: req.session.user_id,
+          current_price: fetchData["Global Quote"]["05. price"],
+        });
+        res.json(newStock);
+      } else {
+        res.status(400).json({ message: "ticker invalid" });
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
   }
 });
 
 // Put or update
-router.put('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
   Stock.update(
     {
       shares: req.body.shares,
       cost: req.body.cost,
-      user_id: req.body.user_id
+      user_id: req.body.user_id,
     },
     {
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     }
   )
-    .then(dbStockData => {
+    .then((dbStockData) => {
       if (!dbStockData) {
-        res.status(404).json({ message: 'No stock found with this id' });
+        res.status(404).json({ message: "No stock found with this id" });
         return;
       }
       res.json(dbStockData);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });

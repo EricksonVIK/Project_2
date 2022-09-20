@@ -21,6 +21,8 @@
       <th>Ticker</th>
       <th>Shares</th>
       <th>Total Cost</th>
+      <th>Current Price</th>
+      {{!-- <th>Total Value</th> --}}
     </tr>
     {{!-- loop to add all user associated stocks --}}
     {{#each userStocks}}
@@ -28,7 +30,8 @@
       <td>{{name}}</td>
       <td>{{ticker}}</td>
       <td>{{shares}}</td>
-      <td>{{cost}}</td>
+      <td>${{cost}}</td>
+      <td>${{current_price}}</td>
     </tr>
     {{/each}}
   </table>  
