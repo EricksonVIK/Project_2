@@ -31,6 +31,7 @@ router.get('/', authority, (req, res) => {
                 // console.log(stocks)
                 // associate the stocks with logged in user
                 const userStocks = stocks.filter(stocks => stocks.user.id === req.session.user_id);
+                console.log(userStocks.id)
                 console.log('------------USERSTOCKS-------------')
                 console.log(userStocks)
                 res.render('dashboard', { userStocks, loggedIn: req.session.loggedIn });
