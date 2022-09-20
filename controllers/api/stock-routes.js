@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Stock } = require("../../models");
 const fetch = require("node-fetch");
+require("dotenv").config();
 
 // get db stock list api/stocks
 router.get("/", (req, res) => {
@@ -42,11 +43,12 @@ router.post("/", async (req, res) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "process.env.API",
+        "X-RapidAPI-Key": "34d605bdbfmshdb4d8ce3a3b8001p173564jsnd4d167075ad7",
         "X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com",
       },
     };
     try {
+      // const apiKey="process.env.API"
       const response = await fetch(
         `https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${req.body.ticker}&datatype=json`,
         options
