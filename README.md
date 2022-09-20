@@ -17,7 +17,7 @@
   ## Usage
   Clone the repository. Install dependencies. Follow propmts to create a user and add new stocks to populate the table.
   Dependencies include; Node, MySQL2, Express, bcrypt, Express-Handlebars, Sequelize, and Node Fetch.
-
+![](public/assets/pictures/Screenshot%202022-09-19%20203131.png)
   ## Development
   - Create new columns for total value and net G/L
   - Add multiple tables to include other investment options, such as ETF's, Mutual Funds, Cryptocurrency, etc...
