@@ -15,10 +15,11 @@
   - [License](#license)
 
   ## Usage
-  Dependencies include; Node, MySQL2, Express, bcrypt, Express-Handlebars, Sequelize, and Node Fetch (for future API use)
+  Clone the repository. Install dependencies. Follow propmts to create a user and add new stocks to populate the table.
+  Dependencies include; Node, MySQL2, Express, bcrypt, Express-Handlebars, Sequelize, and Node Fetch.
 
   ## Development
-  - Integrate api fetch to incorporate real time info to track Net G/L per investment.
+  - Create new columns for total value and net G/L
   - Add multiple tables to include other investment options, such as ETF's, Mutual Funds, Cryptocurrency, etc...
   
 
