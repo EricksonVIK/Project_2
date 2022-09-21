@@ -223,3 +223,11 @@ th, td {
   border-style:solid;
   border-color: white;
 }
+
+.editForm {
+    display: none;
+    position: fixed;
+    transform: translater(-50%, 5%);
+    border: 3px solid red;
+    z-index:9;
+}
