@@ -19,14 +19,10 @@ const sess = {
   })
 };
 
+const helpers = require('./utils/helper');
+
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({    
-  // Specify helpers which are only registered on this instance.
-  // helpers: {
-  //     foo() { return 'FOO!'; },
-  //     bar() { return 'BAR!'; }
-  // }
-});
+const hbs = exphbs.create({ helpers });
 
 const app = express();
 const path = require('path');
@@ -48,7 +44,7 @@ app.use(routes);
 // express.static -- middleware takes all content in folder and serve as static assets
 app.use(express.static(path.join(__dirname, "public")));
 // turn on connection to db and server
-// sync means that this is a sequalize taking the models and connecting them to associated database tables.
+// sync means that this is sequalize taking the models and connecting them to associated database tables.
 // force: true is the same as MySQL DROP TABLE IF EXISTS ... Used when a model has been changed
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now Listening on ${PORT}`));

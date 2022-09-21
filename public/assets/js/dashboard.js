@@ -15,3 +15,14 @@
 //   .then((response) => response.json())
 //   .then((data) => console.log(data))
 //   .catch((err) => console.error(err));
+
+
+function openForm() {
+    // console.log("click")
+    document.getElementById('editForm').style.display = 'block';
+}
+
+function closeForm() {
+    // console.log('click')
+    document.getElementById('editForm').style.display = 'none';
+}

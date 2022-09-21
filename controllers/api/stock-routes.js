@@ -40,6 +40,7 @@ router.get("/:id", (req, res) => {
 // post to stock list api/stocks
 router.post("/", async (req, res) => {
   if (req.session) {
+    // can modularize 43-58 import and use function 
     const options = {
       method: "GET",
       headers: {
@@ -48,7 +49,9 @@ router.post("/", async (req, res) => {
       },
     };
     try {
+
       const response = await fetch(
+        // can i change this fetch to pull based on company name? Then ticker can be inserted based on company.
         `https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${req.body.ticker}&datatype=json`,
         options
       );

@@ -7,6 +7,7 @@ const { User, Stock } = require('../models')
 router.get('/', authority, (req, res) => {
     // console.log(req.session)
     if (req.session) {
+        // 
         Stock.findAll({
             attributes: [
                 'id',
