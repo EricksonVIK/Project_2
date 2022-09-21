@@ -5,7 +5,7 @@
 
   ## Description 
   Welcome to Stock Buddy. This app allows the user to create a secure account to input and track stocks owned (company, shares, total cost).  
-  Heroku: https://secure-peak-70864.herokuapp.com/ </br>
+  https://murmuring-spire-79055.herokuapp.com/dashboard/ </br>
   GitHub: https://ericksonvik.github.io/Stock_Buddy/
 
   ## Table of contents
