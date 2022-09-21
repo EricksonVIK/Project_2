@@ -5,7 +5,7 @@ async function logout() {
   });
 
     if (response.ok) {
-    alert("You have logged out.")
+      alert("One of the best things you can do for yourself is to invest in yourself. ―Angel Moreira" )
     document.location.replace("/");
   } else {
     alert(response.statusText);

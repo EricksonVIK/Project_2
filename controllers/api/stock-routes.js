@@ -43,12 +43,11 @@ router.post("/", async (req, res) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "34d605bdbfmshdb4d8ce3a3b8001p173564jsnd4d167075ad7",
+        "X-RapidAPI-Key": process.env.API_KEY,
         "X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com",
       },
     };
     try {
-      // const apiKey="process.env.API"
       const response = await fetch(
         `https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${req.body.ticker}&datatype=json`,
         options
@@ -66,7 +65,7 @@ router.post("/", async (req, res) => {
         });
         res.json(newStock);
       } else {
-        res.status(400).json({ message: "ticker invalid" });
+        res.status(400).json({ message: "Confirm company information." });
       }
     } catch (err) {
       console.log(err);
