@@ -170,7 +170,8 @@ label {
     background-color: rgba(0%, 0%, 0%, 0.6);
     color: white;
     padding-bottom: 15px;
-    height: 60%
+    height: 60%;
+    align-items: center;
 }
 
 
@@ -224,10 +225,19 @@ th, td {
   border-color: white;
 }
 
+.editPopup {
+    position: relative;
+    text-align:center;
+    width:100%;
+}
+
 .editForm {
-    display: none;
-    position: fixed;
+    display:none;
+    position:fixed;
     transform: translater(-50%, 5%);
     border: 3px solid red;
     z-index:9;
+}
+.editB:hover{
+    opacity:1;
 }

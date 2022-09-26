@@ -1,12 +1,12 @@
+<div>
+  <nav>
+    <a href="/" id="home" class="home">Home</a>
+    <a id="logOut" class="logOut" href="/">Log Out</a>
+  </nav>
+</div>
+<div class="db-content">
   <div>
-    <nav>
-      <a href="/" id="home" class="home">Home</a>
-     <a id="logOut" class="logOut" href="/">Log Out</a>
-    </nav>
-  </div>
- <div class="db-content"> 
-  <div>
-    <h1 id="dash-header"><i>Portfolio</i></h1>
+    <h1 id="dash-header"><i>Portfolio {{req.session.lastName}}</i></h1>
     {{!-- <h1 id="dash-header"><i>Stock Portfolio of:</i></h1>
     <h1><b>{{req.session.firstName}}{{req.session.lastName}}</user></b></h1> --}}
   </div>
@@ -14,34 +14,63 @@
   <div>
     <a class="addBtn" href="/addNew">Add New Stock</a>
   </div>
-
+<div id="editPopup">
+  <form class="editForm" id="editForm">
+    <h1> EDIT FORM </h1>
+    <button id="editB" onclick="editStock()">SAVE</button>
+    <button id="closeB" onclick="closeForm()">CANCEL</button>
+  </form>
+</div>
   <table style="width:100%">
     <tr>
       <th>Company</th>
       <th>Ticker</th>
       <th>Shares</th>
       <th>Total Cost</th>
-      <th>Current Price</th>
-      {{!-- <th>Total Value</th> --}}
+      {{!-- <th>Current Price</th> --}}
+      <th>EDIT</th>
+      {{! <th>Total Value</th> }}
     </tr>
-    {{!-- loop to add all user associated stocks --}}
+    {{! loop to add all user associated stocks }}
     {{#each userStocks}}
-    <tr>
-      <td><a class="companyName" onclick="openForm()">{{name}}</a></td>
-      <td>{{ticker}}</td>
-      <td>{{shares}}</td>
-      <td>${{cost}}</td>
-      <td>${{current_price}}</td>
-    </tr>
+      <tr>
+        <td class="name" id="name">{{name}}</td>
+        <td class="ticker" id="ticker">{{ticker}}</td>
+        <td class="shares" id="shares">{{shares}}</td>
+        <td class="cost" id="cost">${{cost}}</td>
+        {{!-- <td class="currentP" id="currentP">${{current_price}}</td>
+        <td class="totalV" id="totalV"></td> --}}
+        <td>
+          <button class="editB" onclick="openForm()">EDIT</button>
+          <button id="deleteB" onclick="deleteStock()">DELETE</button>
+        </td>
+      </tr>
     {{/each}}
-  </table>  
+  </table>
+  {{! allow the fetch on refresh with create new table based on dashboard along with a chart }}
   <div>
-    <canvas id = 'myChart'></canvas>
-  </div>
+    {{!-- <div> --}}
+      <table style="width:50%">
+        <tr>
+          <th>Company</th>
+          <th>Price</th>
+          <th>Cost</th>
+          <th>Value</th>
+          <th>Net G/L</th>
+        </tr>
+        {{#each userStocks}}
+        <tr>
+          <td>{{name}}</td>
+          <td>${{current_price}}</td>
+          <td>${{cost}}</td>
+          <td>${{total_value}}</td>
+          <td>${{net_gl}}</td>
+        </tr>
+        {{/each}}
+      </table>
+      {{!-- <div id="myPlot" style="width:50%"></div> --}}
+    {{!-- </div> --}}
 </div>
 
 <script src="/assets/js/dashboard.js"></script>
 <script src="/assets/js/logout.js"></script>
-{{!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
-
-

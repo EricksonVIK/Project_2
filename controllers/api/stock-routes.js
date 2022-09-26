@@ -65,6 +65,8 @@ router.post("/", async (req, res) => {
           cost: req.body.cost,
           user_id: req.session.user_id,
           current_price: fetchData["Global Quote"]["05. price"],
+          total_value: fetchData["Global Quote"]["05. price"] * req.body.shares,
+          net_gl: (fetchData["Global Quote"]["05. price"] * req.body.shares) - req.body.cost
         });
         res.json(newStock);
       } else {

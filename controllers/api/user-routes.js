@@ -132,7 +132,7 @@ router.post('/login', (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
-      console.log('-------------USER LOGGED OUT?---------------')
+      console.log('-------------USER LOGGED OUT---------------')
       res.status(204).end();
     });
   }

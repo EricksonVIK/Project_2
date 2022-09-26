@@ -1,28 +1,42 @@
-// file for future API - Used to test 
-
-// const options = {
-//   method: "GET",
-//   headers: {
-//     "X-RapidAPI-Key": "34d605bdbfmshdb4d8ce3a3b8001p173564jsnd4d167075ad7",
-//     "X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com",
-//   },
-// };
-
-// fetch(
-//   `https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=ABBV&datatype=json`,
-//   options
-// )
-//   .then((response) => response.json())
-//   .then((data) => console.log(data))
-//   .catch((err) => console.error(err));
-
-
 function openForm() {
-    // console.log("click")
-    document.getElementById('editForm').style.display = 'block';
+  console.log("click open");
+  document.getElementById("editForm").style.display = "block";
 }
 
 function closeForm() {
-    // console.log('click')
-    document.getElementById('editForm').style.display = 'none';
+  console.log("click close");
+  document.getElementById("editForm").style.display = "none";
 }
+
+function editStock() {
+  console.log("clicked edit");
+}
+
+async function deleteStock() {
+  console.log("clicked delete");
+//   event.preventDefault();
+
+//   const id = window.location.toString().split("/")[
+//     window.location.toString().split("/").length - 1
+//   ];
+
+  const response = await fetch(`/api/stocks/${id}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    document.location.replace("/dashboard/");
+  } else {
+    alert(response.statusText);
+  }
+}
+
+// plotly works with below
+const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
+const yArray = [55, 49, 44, 24, 15];
+
+const layout = { title: "World Wide Wine Production" };
+
+const data = [{ labels: xArray, values: yArray, type: "pie" }];
+
+Plotly.newPlot("myPlot", data, layout);

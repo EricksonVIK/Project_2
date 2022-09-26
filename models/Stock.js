@@ -48,7 +48,12 @@ Stock.init(
     },
     current_price: {
       type: DataTypes.STRING,
-  
+    },
+    total_value: {
+      type:DataTypes.STRING
+    },
+    net_gl: {
+      type:DataTypes.STRING
     }
   },
   {

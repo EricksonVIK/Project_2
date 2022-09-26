@@ -21,6 +21,8 @@ const sess = {
 
 const helpers = require('./utils/helper');
 
+const Chart = require('chart.js');
+
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
 
