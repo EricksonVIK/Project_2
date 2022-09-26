@@ -226,16 +226,16 @@ th, td {
 }
 
 .editPopup {
-    position: relative;
+    position: absolute;
     text-align:center;
     width:100%;
 }
 
 .editForm {
     display:none;
-    position:fixed;
+    position:relative;
     transform: translater(-50%, 5%);
-    border: 3px solid red;
+    /* border: 3px solid red; */
     z-index:9;
 }
 .editB:hover{

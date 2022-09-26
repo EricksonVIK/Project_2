@@ -8,20 +8,41 @@ function closeForm() {
   document.getElementById("editForm").style.display = "none";
 }
 
-function editStock() {
+async function editStock() {
   console.log("clicked edit");
+  const shares = documentquerySelector("#editShare").value.trim();
+  // again how do i link the id
+
+  const response = await fetch(`/api/stocks/2`, {
+    method: "PUT",
+    body: JSON.stringify({
+      shares,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    document.location.replace("/dashboard/");
+  } else {
+    alert(response.statusText);
+  }
 }
 
 async function deleteStock() {
   console.log("clicked delete");
-//   event.preventDefault();
+  //   event.preventDefault();
 
-//   const id = window.location.toString().split("/")[
-//     window.location.toString().split("/").length - 1
-//   ];
+  // how do i access the id?
+  // hard coding worked
+  // const id = ?????
 
   const response = await fetch(`/api/stocks/${id}`, {
     method: "DELETE",
+    // where: {
+    //     id: 1,
+    //   },
   });
 
   if (response.ok) {

@@ -14,13 +14,14 @@
   <div>
     <a class="addBtn" href="/addNew">Add New Stock</a>
   </div>
-<div id="editPopup">
-  <form class="editForm" id="editForm">
-    <h1> EDIT FORM </h1>
-    <button id="editB" onclick="editStock()">SAVE</button>
-    <button id="closeB" onclick="closeForm()">CANCEL</button>
-  </form>
-</div>
+  <div id="editPopup">
+    <form class="editForm" id="editForm">
+      <h1> EDIT FORM </h1>
+      <input id="editShare" type="text" value="" placeholder="Shares">
+      <button id="editB" onclick="editStock()">SAVE</button>
+      <button id="closeB" onclick="closeForm()">CANCEL</button>
+    </form>
+  </div>
   <table style="width:100%">
     <tr>
       <th>Company</th>
