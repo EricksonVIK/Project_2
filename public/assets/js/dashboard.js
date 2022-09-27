@@ -16,13 +16,15 @@ async function editStock() {
   //   event.preventDefault();
   console.log("clicked edit");
 
-  const shares = document.querySelector("#editShare").value.trim();
+    const shares = document.querySelector("#editShare").value.trim();
+    const cost = document.querySelector("#editCost").value.trim();
   // again how do i link the id
   console.log(id);
   const response = await fetch(`/api/stocks/${id}`, {
     method: "PUT",
     body: JSON.stringify({
-      shares,
+        shares,
+        cost,
     }),
     headers: {
       "Content-Type": "application/json",
