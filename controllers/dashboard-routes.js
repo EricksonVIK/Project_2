@@ -7,7 +7,20 @@ const { User, Stock } = require("../models");
 router.get("/", authority, (req, res) => {
   // console.log(req.session)
   if (req.session) {
-    //
+    
+    //   const options = {
+    //       method: 'GET',
+    //       headers: {
+    //           "X-RapidAPI-Key": process.env.API_KEY,
+    //           "X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com",
+    //       }
+    //   };
+    //   try {
+    //       const response = await fetch(
+    //         `https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=${req.body.ticker}&datatype=json`,
+    //         options    
+    //       )
+    //   }
     Stock.findAll({
       attributes: [
         "id",

@@ -1,6 +1,10 @@
+const editBEl = document.querySelector(".editB");
+let id;
+
 function openForm() {
   console.log("click open");
   document.getElementById("editForm").style.display = "block";
+  id = editBEl.getAttribute("data-id");
 }
 
 function closeForm() {
@@ -9,11 +13,13 @@ function closeForm() {
 }
 
 async function editStock() {
+  //   event.preventDefault();
   console.log("clicked edit");
-  const shares = documentquerySelector("#editShare").value.trim();
-  // again how do i link the id
 
-  const response = await fetch(`/api/stocks/2`, {
+  const shares = document.querySelector("#editShare").value.trim();
+  // again how do i link the id
+  console.log(id);
+  const response = await fetch(`/api/stocks/${id}`, {
     method: "PUT",
     body: JSON.stringify({
       shares,
@@ -32,11 +38,9 @@ async function editStock() {
 
 async function deleteStock() {
   console.log("clicked delete");
-  //   event.preventDefault();
+  id = editBEl.getAttribute("data-id");
 
-  // how do i access the id?
-  // hard coding worked
-  // const id = ?????
+  console.log(id);
 
   const response = await fetch(`/api/stocks/${id}`, {
     method: "DELETE",
@@ -52,6 +56,8 @@ async function deleteStock() {
   }
 }
 
+// get all fetch
+
 // plotly works with below
 const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
 const yArray = [55, 49, 44, 24, 15];
@@ -61,3 +67,5 @@ const layout = { title: "World Wide Wine Production" };
 const data = [{ labels: xArray, values: yArray, type: "pie" }];
 
 Plotly.newPlot("myPlot", data, layout);
+
+// editBEl.addEventListener("click", editStock);
