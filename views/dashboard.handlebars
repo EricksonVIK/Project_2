@@ -62,15 +62,15 @@
         </tr>
         {{#each userStocks}}
         <tr>
-          <td>{{name}}</td>
-          <td>${{current_price}}</td>
-          <td>${{cost}}</td>
-          <td>${{total_value}}</td>
-          <td>${{net_gl}}</td>
+          <td data-id={{id}}>{{name}}</td>
+          <td data-id={{id}}>${{current_price}}</td>
+          <td data-id={{id}}>${{cost}}</td>
+          <td data-id={{id}}>${{total_value}}</td>
+          <td data-id={{id}}>${{net_gl}}</td>
         </tr>
         {{/each}}
       </table>
-      <div id="myPlot" style="width:50%"></div>
+      {{!-- <div id="myPlot" style="width:50%"></div> --}}
     {{!-- </div> --}}
 </div>
 
